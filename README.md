@@ -3,6 +3,8 @@ MASM-Game
 
 This is MASM game repository.
 
+---------------------------------------
+
 ### AUTHOR
 
 - **林子軒** [eden0521](https://github.com/eden0521)
