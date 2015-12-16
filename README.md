@@ -3,6 +3,13 @@ MASM-Game
 
 This is MASM game repository.
 
+
+--------------------------------------
+
+### 共同筆記
+
+https://hackpad.com/1qu6JUgZMwS
+
 ---------------------------------------
 
 ### AUTHOR
