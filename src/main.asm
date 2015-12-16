@@ -2,7 +2,7 @@ INCLUDE Irvine32.inc
 INCLUDE utils.asm
 
 .data
-	;
+
 .code
 main PROC
 	call 	start
