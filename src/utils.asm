@@ -49,6 +49,44 @@ L1:	mov	eax,bytesRead	; success
 L2:	ret
 ReadFromFile ENDP
 
+;------------------------------------------------------
+CreateOutputFile PROC
+;
+; Creates a new file and opens it in output mode.
+; Receives: EDX points to the filename.
+; Returns: If the file was created successfully, EAX 
+;   contains a valid file handle. Otherwise, EAX  
+;   equals INVALID_HANDLE_VALUE.
+;------------------------------------------------------
+	INVOKE CreateFile,
+	  edx, GENERIC_WRITE, DO_NOT_SHARE, NULL,
+	  CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0
+	ret
+CreateOutputFile ENDP
+
+
+;--------------------------------------------------------
+WriteToFile PROC
+;
+; Writes a buffer to an output file.
+; Receives: EAX = file handle, EDX = buffer offset,
+;    ECX = number of bytes to write
+; Returns: EAX = number of bytes written to the file.
+; Last update: 6/8/2005
+;--------------------------------------------------------
+.data
+WriteToFile_1 DWORD ?    	; number of bytes written
+.code
+	INVOKE WriteFile,	; write buffer to file
+		eax,	; file handle
+		edx,	; buffer pointer
+		ecx,	; number of bytes to write
+		ADDR WriteToFile_1,	; number of bytes written
+		0	; overlapped execution flag
+	mov	eax,WriteToFile_1	; return value
+	ret
+WriteToFile ENDP
+
 
 ;--------------------------------------------------------
 CloseFile PROC
