@@ -1,5 +1,4 @@
 TITLE start
-;INCLUDE score.asm
 .data
 	textStr			BYTE "Foreword:",0
 	textStr1		BYTE "Enter is equal to enter spacebar twice.",0
