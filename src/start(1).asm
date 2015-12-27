@@ -1,7 +1,7 @@
 TITLE start
 .data
 	textStr			BYTE "Foreword:",0
-	textStr1		BYTE "Enter is equal to enter spacebar twice.",0
+	textStr1		BYTE "Enter is equal to enter the spacebar twice.",0
 	textStr2		BYTE "Please enter the 's' to choose the next option.",0
 	entgaStr		BYTE "Please enter the spacebar to continue.",0
 	space     		BYTE "              ",0
