@@ -1,4 +1,5 @@
 TITLE start
+INCLUDE rank.asm
 .data
 	textStr			BYTE "Foreword:",0
 	textStr1		BYTE "Enter is equal to enter the spacebar twice.",0
@@ -21,17 +22,17 @@ TITLE start
 start PROC	
 STARTSCREEN:
 	call	ClrScr	
-	mov		edx, OFFSET[textStr]
+	mov	edx, OFFSET[textStr]
 	call 	WriteString
 	call 	Crlf
-	mov		edx, OFFSET[textStr1]
+	mov	edx, OFFSET[textStr1]
 	call 	WriteString	
 	call 	Crlf
-	mov		edx, OFFSET[entgaStr]
+	mov	edx, OFFSET[entgaStr]
 	call 	WriteString
 	call 	ReadChar
 	cmp 	al, ' '
-	je		GAMECH
+	je	GAMECH
 TES:
 	jmp 	STARTSCREEN
 GAMECH:
@@ -48,14 +49,14 @@ GAMECH:
 	call 	Crlf
 	call 	Crlf
 	mov 	edx, OFFSET[space2] 		;G
-	call 	WriteString					;A
-	call 	WriteString					;M
-	mov		eax,white+(blue*16)			;E
-	call	SetTextColor				;S
-	mov 	edx, OFFSET opt1			;T
-	call 	WriteString					;A
-	mov		eax,white+(black*16)		;R
-	call	SetTextColor				;T
+	call 	WriteString			;A
+	call 	WriteString			;M
+	mov	eax,white+(blue*16)		;E
+	call	SetTextColor			;S
+	mov 	edx, OFFSET opt1		;T
+	call 	WriteString			;A
+	mov	eax,white+(black*16)		;R
+	call	SetTextColor			;T
 	call 	Crlf						
 	mov 	edx, OFFSET[space2] 
 	call 	WriteString
@@ -85,13 +86,13 @@ GAMECH:
 	call 	WriteString	
 	call 	ReadChar
 	cmp 	al, 's'
-	je		RANK
+	je	RANK
 CHE1:
-	jmp		GAMECH
+	jmp	GAMECH
 TES1:
 	call 	ReadChar  
 	cmp 	al, ' '
-	je		READY
+	je	READY
 RANK:
 	call	ClrScr
 	call 	Crlf
@@ -106,20 +107,20 @@ RANK:
 	call 	Crlf
 	call 	Crlf
 	mov 	edx, OFFSET[space2] 		;
-	call 	WriteString					;
-	call 	WriteString					;
-	mov 	edx, OFFSET opt1			;
-	call 	WriteString					;
-	call 	Crlf						;
+	call 	WriteString			;
+	call 	WriteString			;
+	mov 	edx, OFFSET opt1		;
+	call 	WriteString			;
+	call 	Crlf				;
 	mov 	edx, OFFSET[space2] 		;
-	call 	WriteString					;
-	call 	WriteString					;
-	mov		eax,white+(blue*16)			;
-	call	SetTextColor				;
-	mov 	edx, OFFSET opt2			;
-	call 	WriteString					;
-	call 	Crlf						;
-	mov		eax,white+(black*16)		;
+	call 	WriteString			;
+	call 	WriteString			;
+	mov	eax,white+(blue*16)		;
+	call	SetTextColor			;
+	mov 	edx, OFFSET opt2		;
+	call 	WriteString			;
+	call 	Crlf				;
+	mov	eax,white+(black*16)		;
 	call	SetTextColor
 	mov 	edx, OFFSET[space2] 
 	call 	WriteString
@@ -141,12 +142,17 @@ RANK:
 	call 	WriteString
 	mov 	edx, OFFSET[cStr] ; Tell user press spacebar to start.
 	call 	WriteString
-CHE2:
-	jmp		RANK
-TES2:
 	call 	ReadChar  
 	cmp 	al, 's'
-	jmp		INST
+	jmp	INST
+CHE2:
+	jmp	RANK
+TES2:
+	call 	ReadChar 
+	cmp 	al, ' '
+	je	SR
+SR:
+	call	showrank
 INST:
 	call	ClrScr
 	call 	Crlf
@@ -161,25 +167,25 @@ INST:
 	call 	Crlf
 	call 	Crlf
 	mov 	edx, OFFSET[space2] 		;
-	call 	WriteString					;
-	call 	WriteString					;
-	mov 	edx, OFFSET opt1			;
-	call 	WriteString					;
-	call 	Crlf						;
+	call 	WriteString			;
+	call 	WriteString			;
+	mov 	edx, OFFSET opt1		;
+	call 	WriteString			;
+	call 	Crlf				;
 	mov 	edx, OFFSET[space2] 		;
-	call 	WriteString					;
-	call 	WriteString					;					
-	mov 	edx, OFFSET opt2			;
-	call 	WriteString					;
-	call 	Crlf						;	
+	call 	WriteString			;
+	call 	WriteString			;					
+	mov 	edx, OFFSET opt2		;
+	call 	WriteString			;
+	call 	Crlf				;	
 	mov 	edx, OFFSET[space2] 
 	call 	WriteString
 	call 	WriteString
-	mov		eax,white+(blue*16)			
+	mov	eax,white+(blue*16)			
 	call	SetTextColor
 	mov 	edx, OFFSET opt3
 	call 	WriteString
-	mov		eax,white+(black*16)		
+	mov	eax,white+(black*16)		
 	call	SetTextColor	
 	call 	Crlf
 	call 	Crlf
@@ -198,13 +204,13 @@ INST:
 	call 	WriteString
 	call 	ReadChar  
 	cmp 	al, 's'
-	je		GAMECH
+	je	GAMECH
 CHE3:
-	jmp		INST
+	jmp	INST
 TES3:
 	call 	ReadChar 
 	cmp 	al, ' '
-	je		EX
+	je	EX
 EX:
 	call	ClrScr
 	mov 	edx, OFFSET[exStr1]     ; rule ex
@@ -238,35 +244,35 @@ EX:
 	call 	WriteString
 	call 	ReadChar  ; If user press spacebar then continue.
 	cmp 	al, 'b'
-	je		GAMECH
+	je	GAMECH
 FAIL2:	
 	jmp 	EX
 READY:
 	call    ClrScr
-	mov		eax, 1000
+	mov	eax, 1000
 	call	Delay	
 
 	mov 	edx, OFFSET[readynumber1]	
 	call 	WriteString	
-	mov		eax, 1000
+	mov	eax, 1000
 	call	Delay
 	call    ClrScr
 
 	mov 	edx, OFFSET[readynumber2]
 	call 	WriteString
-	mov		eax, 1000
+	mov	eax, 1000
 	call	Delay
 	call    ClrScr
 
 	mov 	edx, OFFSET[readynumber3]
 	call 	WriteString
-	mov		eax, 1000
+	mov	eax, 1000
 	call	Delay
 	call    ClrScr
 
 	mov 	edx, OFFSET[goStr]
 	call 	WriteString
-	mov		eax, 1000
+	mov	eax, 1000
 	call	Delay
 	call    ClrScr
 start ENDP
