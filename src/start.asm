@@ -147,10 +147,12 @@ L_RANK:
 	call 	WriteString
 	call 	ReadChar  
 	cmp 	al, 's'
-	jmp	INST
+	je		INST
 TES2:
 	call 	ReadChar 
 	cmp 	al, ' '
+	je		RS
+RS:
 	call	showrank
 CHE2:
 	jmp	L_RANK
