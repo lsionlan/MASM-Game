@@ -28,6 +28,9 @@ STARTSCREEN:
 	mov	edx, OFFSET[textStr1]
 	call 	WriteString	
 	call 	Crlf
+	mov	edx, OFFSET[textStr2]
+	call 	WriteString	
+	call 	Crlf
 	mov	edx, OFFSET[entgaStr]
 	call 	WriteString
 	call 	ReadChar
