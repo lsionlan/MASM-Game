@@ -148,11 +148,9 @@ L_RANK:
 TES2:
 	call 	ReadChar 
 	cmp 	al, ' '
-	je	SR
+	call	showrank
 CHE2:
 	jmp	L_RANK
-SR:
-	call	showrank
 INST:
 	call	ClrScr
 	call 	Crlf
